@@ -13,6 +13,9 @@ function preload() {
 }
 
 function setup() {
+  noCursor();
+  cursor("assets/brush.png", 20, -10);
+  textSize(4);
   if (carga.height < 450){
     createCanvas(carga.width+175, 450);
   }else{
