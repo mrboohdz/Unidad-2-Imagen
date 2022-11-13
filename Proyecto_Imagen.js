@@ -3,7 +3,8 @@ let btnR, btnG, btnB, btnSave;
 let banR, banG, banB;
 
 function preload() {
-  carga = loadImage("assets/imagen.jpg");
+  carga = loadImage("assets/AOT.jpeg");
+  //carga = loadImage("https://www.crunchyroll.com/imgsrv/display/thumbnail/480x720/catalog/crunchyroll/a9d4c1493f80703fe86dd83fb3b37623.jpeg","jpeg");
   on = loadImage("assets/on.png");
   off = loadImage("assets/off.png");
   dl = loadImage("assets/download.png");
