@@ -46,7 +46,8 @@ function setup() {
   btnR = new Button(carga.width+25, 25, " ");
   btnG = new Button(carga.width+25, 103, " ");
   btnB = new Button(carga.width+25, 181, " ");
-  btnSave = new ButtonSave(carga.width+25, 250, " ");
+  btnSave = new ButtonSave(carga.width+25, 250, "download.png");
+
 }
 
 
@@ -97,6 +98,23 @@ function mousePressed(){
       image(on, carga.width+25, 181);
     }
   }
+  
+  //Evalua si se presiona el boton para guardar la imagen
+  if (btnSave.overMe()){
+    // se crea la variable donde se guardara la imagen y se le da un tamaño 
+  let img = createImage(carga.width, carga.height);
+  //Se cargan los pixeles
+  img.loadPixels();
+  //Recorre la imagen, la carga y la guarda.
+  for(let i = 0; i <= carga.width; i++) {
+    for(let j = 0; j <= carga.height; j++) {
+    img.set(i, j, get(i,j));
+    }
+    }
+    img.updatePixels();
+    img.save('imagen', 'png');
+  }
+  
 }
 
 //Clase para los botones de cada canala de color.
@@ -117,7 +135,7 @@ class Button {
   }
   //Método para poder saber si se encuentra el mouse sobre el objeto.
   overMe(){
-    if(this.x<mouseX && mouseX<this.x+this.size && this.y<mouseY && mouseY<this.y+this.size)
+    if(this.x<mouseX && mouseX<this.x+this.tam && this.y<mouseY && mouseY<this.y+this.tam)
     {
       return true;
     }
@@ -127,7 +145,7 @@ class Button {
 //Clase para el botón de descargar.
 class ButtonSave {
   //Se define su constructor.
-  constructor(x=0,y=0,caption="Button"){
+  constructor(x=0,y=0, caption="Button"){
     this.x = x;
     this.y = y;
     this.tam = 125;
@@ -136,12 +154,11 @@ class ButtonSave {
   // Método para mostrar en la pantalla.
   display(){
     noFill();
-    rect(this.x,this.y,this.tam);
-    text(this.caption, this.x+25,this.y+50);
+    rect(this.x,this.y,this.tam,this.tam);
   }
   //Método para poder saber si se encuentra el mouse sobre el objeto.
   overMe(){
-    if(this.x<mouseX && mouseX<this.x+this.size && this.y<mouseY && mouseY<this.y+this.size)
+    if(this.x<mouseX && mouseX<this.x+this.tam && this.y<mouseY && mouseY<this.y+this.tam)
     {
       return true;
     }
